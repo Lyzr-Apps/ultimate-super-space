@@ -239,28 +239,28 @@ export default function HomePage() {
   }
 
   return (
-    <div className="flex h-screen bg-slate-50 text-slate-900">
+    <div className="flex h-screen bg-black text-white">
       {/* Sidebar */}
       <div
-        className={`flex flex-col w-64 bg-white border-r border-slate-200 transition-all duration-300 ${
+        className={`flex flex-col w-64 bg-gray-900 border-r border-gray-700 transition-all duration-300 ${
           !sidebarOpen ? '-ml-64' : ''
         }`}
       >
-        <div className="p-4 border-b border-slate-200">
+        <div className="p-4 border-b border-gray-700">
           <Button onClick={createNewConversation} className="w-full bg-blue-600 hover:bg-blue-700 text-white">
             <Plus className="w-4 h-4 mr-2" />
             New Chat
           </Button>
         </div>
 
-        <div className="px-4 py-3 border-b border-slate-200">
+        <div className="px-4 py-3 border-b border-gray-700">
           <div className="relative">
-            <Search className="absolute left-3 top-2.5 w-4 h-4 text-slate-400" />
+            <Search className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" />
             <Input
               placeholder="Search conversations..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9 h-9 bg-slate-50 border-slate-200"
+              className="pl-9 h-9 bg-gray-800 border-gray-700 text-white placeholder-gray-500"
             />
           </div>
         </div>
@@ -268,7 +268,7 @@ export default function HomePage() {
         <ScrollArea className="flex-1">
           <div className="p-2">
             {filteredConversations.length === 0 ? (
-              <p className="text-center text-slate-400 text-sm py-8">No conversations yet</p>
+              <p className="text-center text-gray-400 text-sm py-8">No conversations yet</p>
             ) : (
               filteredConversations.map((conv) => (
                 <div
@@ -276,22 +276,22 @@ export default function HomePage() {
                   onClick={() => setCurrentConversationId(conv.id)}
                   className={`p-3 mb-2 rounded-lg cursor-pointer transition-colors ${
                     currentConversationId === conv.id
-                      ? 'bg-blue-50 border border-blue-200'
-                      : 'hover:bg-slate-50 border border-transparent'
+                      ? 'bg-gray-800 border border-blue-600'
+                      : 'hover:bg-gray-800 border border-transparent'
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium text-sm text-slate-900 truncate">{conv.title}</p>
-                      <p className="text-xs text-slate-500 mt-1 line-clamp-2">{conv.lastMessage}</p>
-                      <p className="text-xs text-slate-400 mt-1">{formatTime(conv.createdAt)}</p>
+                      <p className="font-medium text-sm text-white truncate">{conv.title}</p>
+                      <p className="text-xs text-gray-400 mt-1 line-clamp-2">{conv.lastMessage}</p>
+                      <p className="text-xs text-gray-500 mt-1">{formatTime(conv.createdAt)}</p>
                     </div>
                     <button
                       onClick={(e) => {
                         e.stopPropagation()
                         deleteConversation(conv.id)
                       }}
-                      className="text-slate-400 hover:text-red-600 flex-shrink-0"
+                      className="text-gray-400 hover:text-red-500 flex-shrink-0"
                     >
                       ×
                     </button>
@@ -306,18 +306,18 @@ export default function HomePage() {
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <div className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6">
+        <div className="h-16 bg-gray-900 border-b border-gray-700 flex items-center justify-between px-6">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="p-2 hover:bg-slate-100 rounded-lg transition-colors"
+              className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
             >
-              <MessageSquare className="w-5 h-5 text-slate-600" />
+              <MessageSquare className="w-5 h-5 text-gray-300" />
             </button>
-            <h1 className="text-xl font-bold text-slate-900">Knowledge Base Chatbot</h1>
+            <h1 className="text-xl font-bold text-white">Knowledge Base Chatbot</h1>
           </div>
           {currentConversation && (
-            <p className="text-sm text-slate-500">{currentConversation.messages.length} messages</p>
+            <p className="text-sm text-gray-400">{currentConversation.messages.length} messages</p>
           )}
         </div>
 
@@ -325,11 +325,11 @@ export default function HomePage() {
         {!currentConversationId || !currentConversation ? (
           <div className="flex-1 flex flex-col items-center justify-center">
             <div className="text-center max-w-md">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MessageSquare className="w-8 h-8 text-blue-600" />
+              <div className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                <MessageSquare className="w-8 h-8 text-blue-500" />
               </div>
-              <h2 className="text-2xl font-bold text-slate-900 mb-2">Start a conversation</h2>
-              <p className="text-slate-600 mb-6">Click on a conversation or create a new one to begin</p>
+              <h2 className="text-2xl font-bold text-white mb-2">Start a conversation</h2>
+              <p className="text-gray-400 mb-6">Click on a conversation or create a new one to begin</p>
               <Button onClick={createNewConversation} className="bg-blue-600 hover:bg-blue-700 text-white">
                 <Plus className="w-4 h-4 mr-2" />
                 New Chat
@@ -342,16 +342,16 @@ export default function HomePage() {
               {currentConversation.messages.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center gap-4 mb-12">
                   <div className="text-center">
-                    <h3 className="text-lg font-semibold text-slate-900 mb-4">What would you like to know?</h3>
+                    <h3 className="text-lg font-semibold text-white mb-4">What would you like to know?</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {STARTER_PROMPTS.map((prompt, idx) => (
                         <button
                           key={idx}
                           onClick={() => sendMessage(prompt)}
                           disabled={isLoading}
-                          className="p-3 text-left border border-slate-200 rounded-lg hover:bg-slate-50 hover:border-blue-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="p-3 text-left border border-gray-700 rounded-lg hover:bg-gray-800 hover:border-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          <p className="text-sm font-medium text-slate-900">{prompt}</p>
+                          <p className="text-sm font-medium text-gray-100">{prompt}</p>
                         </button>
                       ))}
                     </div>
@@ -365,13 +365,13 @@ export default function HomePage() {
                         className={`max-w-2xl px-4 py-3 rounded-lg ${
                           message.sender === 'user'
                             ? 'bg-blue-600 text-white rounded-br-none'
-                            : 'bg-slate-100 text-slate-900 rounded-bl-none'
+                            : 'bg-gray-800 text-gray-100 rounded-bl-none'
                         }`}
                       >
                         <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.text}</p>
                         <p
                           className={`text-xs mt-2 ${
-                            message.sender === 'user' ? 'text-blue-100' : 'text-slate-500'
+                            message.sender === 'user' ? 'text-blue-100' : 'text-gray-400'
                           }`}
                         >
                           {formatTime(message.timestamp)}
@@ -381,7 +381,7 @@ export default function HomePage() {
                   ))}
                   {isLoading && (
                     <div className="flex justify-start">
-                      <div className="bg-slate-100 text-slate-900 px-4 py-3 rounded-lg rounded-bl-none">
+                      <div className="bg-gray-800 text-gray-100 px-4 py-3 rounded-lg rounded-bl-none">
                         <div className="flex items-center gap-2">
                           <Loader2 className="w-4 h-4 animate-spin" />
                           <span className="text-sm">Typing...</span>
@@ -398,7 +398,7 @@ export default function HomePage() {
 
         {/* Input Area */}
         {currentConversationId && (
-          <div className="border-t border-slate-200 bg-white p-6">
+          <div className="border-t border-gray-700 bg-gray-900 p-6">
             <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
               <div className="flex gap-3">
                 <Input
@@ -407,7 +407,7 @@ export default function HomePage() {
                   onKeyDown={handleKeyDown}
                   placeholder="Type your message... (Shift+Enter for new line)"
                   disabled={isLoading}
-                  className="flex-1 border-slate-200 focus:border-blue-500 focus:ring-blue-500"
+                  className="flex-1 bg-gray-800 border-gray-700 text-white placeholder-gray-500 focus:border-blue-500 focus:ring-blue-500"
                 />
                 <Button
                   type="submit"

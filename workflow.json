@@ -1,0 +1,86 @@
+{
+  "version": "1.0",
+  "updated_at": "2025-12-10T00:00:00Z",
+  "workflow": {
+    "nodes": [
+      {
+        "id": "input",
+        "type": "input",
+        "label": "User Message",
+        "nodeCategory": "input",
+        "description": "User enters a message in the chat interface",
+        "position": {
+          "x": 100,
+          "y": 200
+        }
+      },
+      {
+        "id": "chat_agent",
+        "type": "agent",
+        "label": "Chat Assistant Agent",
+        "nodeCategory": "agent",
+        "description": "Processes user messages with conversation history and generates responses",
+        "position": {
+          "x": 500,
+          "y": 200
+        }
+      },
+      {
+        "id": "output",
+        "type": "end",
+        "label": "Chat Response",
+        "nodeCategory": "end",
+        "description": "Agent response displayed in chat thread",
+        "position": {
+          "x": 900,
+          "y": 200
+        }
+      }
+    ],
+    "edges": [
+      {
+        "source": "input",
+        "target": "chat_agent",
+        "label": null
+      },
+      {
+        "source": "chat_agent",
+        "target": "output",
+        "label": null
+      }
+    ]
+  },
+  "agents": [
+    {
+      "agent_id": "6939a09c5a8dda74db9ccca4",
+      "node_id": "chat_agent",
+      "name": "Chat Assistant Agent",
+      "description": "Handles user conversations, provides helpful responses, maintains context across messages, and delivers informative answers to general queries",
+      "agent_role": "Conversational AI Assistant",
+      "agent_goal": "Provide helpful, contextual responses to user queries while maintaining conversation history and delivering seamless conversational experiences",
+      "agent_instructions": "You are a helpful and friendly AI assistant. Your role is to:\n\n1. Listen carefully to user messages and understand their intent\n2. Provide clear, accurate, and helpful responses\n3. Maintain context from previous messages in the conversation\n4. Ask clarifying questions when needed\n5. Offer relevant suggestions and follow-up assistance\n6. Keep responses concise but informative\n7. Be honest about limitations and uncertainties\n8. Adapt your communication style to match the user's tone\n\nGuidelines:\n- Remember previous exchanges in the current conversation\n- Provide practical and actionable advice when applicable\n- Maintain a professional yet friendly tone\n- Break down complex topics into understandable parts\n- Acknowledge when you don't know something rather than guessing",
+      "provider_id": "OpenAI",
+      "model": "gpt-4o-mini",
+      "temperature": 0.7,
+      "top_p": 0.95,
+      "features": [
+        {
+          "type": "MEMORY",
+          "config": {
+            "max_messages_context_count": 10
+          },
+          "priority": 0
+        }
+      ],
+      "has_knowledge_base": false,
+      "rag_id": null,
+      "rag_name": null,
+      "position": {
+        "x": 500,
+        "y": 200
+      },
+      "created_at": "2025-12-10T00:00:00Z"
+    }
+  ],
+  "knowledge_bases": []
+}
